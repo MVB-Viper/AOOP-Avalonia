@@ -1,0 +1,43 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20" Width="400" Background="{DynamicResource PrimaryBackground}">
+            <!-- Add Controls for Previewer Here -->
+            <StackPanel Spacing="10">
+                <TextBlock Classes="normal" Text="This one has no wrapping and is a normal Textblock"></TextBlock>
+                <TextBlock Classes="normal" TextWrapping="Wrap" Text="Remove license of BatchProcess form this machine and release the license back to the server ready to be transferred to another machine."/>
+                <TextBlock Classes="sub1" >This is a sub 1 text block</TextBlock>
+                <TextBlock Classes="sub1 success" >This is a sub 1 success text block</TextBlock>
+                <TextBlock Classes="sub1 alert" >This is a sub 1 alert text block</TextBlock>
+                <TextBlock Classes="sub1 warning" >This is a sub 1 warning text block</TextBlock>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    
+    <Style Selector="TextBlock.normal">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.sub1">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+            
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+    
+    <Style Selector="TextBlock.success">
+        <Setter Property="Foreground" Value="{DynamicResource SuccessButtonGradient}"/>
+    </Style>
+    
+    <Style Selector="TextBlock.alert">
+        <Setter Property="Foreground" Value="{DynamicResource AlertButtonGradient}"/>
+    </Style>
+    
+    <Style Selector="TextBlock.warning">
+        <Setter Property="Foreground" Value="{DynamicResource WarningButtonGradient}"/>
+    </Style>
+</Styles>

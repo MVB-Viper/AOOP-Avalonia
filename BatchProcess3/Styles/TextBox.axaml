@@ -1,0 +1,41 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20" Background="{DynamicResource PrimaryBackground}">
+            <!-- Add Controls for Previewer Here -->
+            <StackPanel Spacing="10">
+                <TextBox>Some Textbox</TextBox>
+                <TextBox PasswordChar="*">Some Textbox</TextBox>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    <Style Selector="TextBox">
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryButtonGradient}"></Setter>
+        <Setter Property="BorderThickness" Value="3"></Setter>
+        <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="CaretBrush" Value="{DynamicResource PrimaryText}"></Setter>
+            
+        <Style Selector="^:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryButtonGradient}"></Setter>
+            <Setter Property="BorderThickness" Value="3"></Setter>
+            <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}"/>
+        </Style>
+            
+        <Style Selector="^:pointerover">
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        </Style>
+            
+        <Style Selector="^:focus">
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        </Style>
+            
+        <Style Selector="^:focus /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="{DynamicResource AlertButtonGradient}"></Setter>
+            <Setter Property="BorderThickness" Value="3"></Setter>
+            <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}"/>
+        </Style>
+    </Style>
+</Styles>

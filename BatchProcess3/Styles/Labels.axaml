@@ -1,0 +1,73 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Background="{DynamicResource PrimaryBackground}" Padding="20">
+            <!-- Add Controls for Previewer Here -->
+            <StackPanel Spacing="10">
+                <Label Classes="h1" Content="Header 1"/>
+                <Label Classes="h2" Content="Header 2"/>
+                <Label Classes="sub1" Content="Sub 1"/>
+                <Label Classes="sub2" Content="Sub 2"/>
+                <Label Classes="success" Content="Success"/>
+                <Label Classes="alert" Content="Alert"/>
+                <Label Classes="warning" Content="Warning"/>
+                <Label Classes="icon" Content="&#xe2f2;"/>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    <Style Selector="Label">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+    </Style>
+    
+    
+    <Style Selector="Label.h1">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="FontSize" Value="45"></Setter>
+        <Setter Property="FontWeight" Value="Black"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+    
+    <Style  Selector="Label.h2">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="Padding" Value="0 0 8 0"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+    </Style>
+
+    <Style Selector="Label.sub1">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+        
+    <Style Selector="Label.sub2">
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+        
+    <Style Selector="Label.alert">
+        <Setter Property="Foreground" Value="{DynamicResource AlertButtonGradient}"/>
+    </Style>
+        
+    <Style Selector="Label.success">
+        <Setter Property="Foreground" Value="{DynamicResource SuccessButtonGradient}"/>
+    </Style>
+    
+    <Style Selector="Label.warning">
+        <Setter Property="Foreground" Value="{DynamicResource WarningButtonGradient}"/>
+    </Style>
+    
+    
+    <Style Selector="Label.icon">
+        <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
+        <Setter Property="Margin"  Value="0 0 5 0"></Setter>
+    </Style>
+    
+</Styles>
