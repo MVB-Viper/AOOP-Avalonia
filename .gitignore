@@ -1,52 +1,70 @@
-# Prerequisites
-*.d
+# Ignore build results
+**/bin/
+**/obj/
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Rider IDE
+.idea/
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# VS Code
+.vscode/
 
-# Precompiled Headers
-*.gch
-*.pch
+# Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# Avalonia build artifacts
+**/*.axaml.cs
+**/*.g.cs
+**/*.g.i.cs
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# Avalonia resources auto-generated files
+**/*.g.resources
+**/*.resources
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# Temporary files
+**/*.tmp
+**/*.temp
+**/~$*
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+# Logs
+**/*.log
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# NuGet packages
+*.nupkg
+**/packages/
+# Optional: ignore global-packages cache if committed by mistake
+**/.nuget/
+
+# DotCover (JetBrains)
+*.dotCover
+
+# StyleCop
+StyleCopReport.xml
+
+# ReSharper
+_ReSharper*/
+**/JetBrains.Annotations.*
+*.DotSettings.user
+
+# Local test results
+TestResult.xml
+TestResults/
+*.trx
+
+# Publish output
+**/publish/
+**/AppPackages/
+**/BundleArtifacts/
+**/PackageArtifacts/
+
+# macOS specific
+.DS_Store
+
+# Windows thumbs
+Thumbs.db
+
+# Optional: Exclude local SQLite or other dev databases
+**/*.db
+**/*.sqlite
