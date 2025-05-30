@@ -68,3 +68,4 @@ Thumbs.db
 # Optional: Exclude local SQLite or other dev databases
 **/*.db
 **/*.sqlite
+/src/BatchProcess3/obj
