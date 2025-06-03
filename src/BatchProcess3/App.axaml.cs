@@ -31,15 +31,15 @@ public partial class App : Application
         collection.AddTransient<ReporterPageViewModel>();
         collection.AddTransient<SettingsPageViewModel>();
 
-        collection.AddSingleton<Func<ApplicationPageNames, PageViewModel>>(x => name => name switch
+        collection.AddSingleton<Func<Type, PageViewModel>>(x => type => type switch
         {
-            ApplicationPageNames.Home => x.GetRequiredService<HomePageViewModel>(),
-            ApplicationPageNames.Process => x.GetRequiredService<ProcessPageViewModel>(),
-            ApplicationPageNames.Actions => x.GetRequiredService<ActionsPageViewModel>(),
-            ApplicationPageNames.Macros => x.GetRequiredService<MacrosPageViewModel>(),
-            ApplicationPageNames.Reporter => x.GetRequiredService<ReporterPageViewModel>(),
-            ApplicationPageNames.History => x.GetRequiredService<HistoryPageViewModel>(),
-            ApplicationPageNames.Settings => x.GetRequiredService<SettingsPageViewModel>(),
+            _ when type == typeof(HomePageViewModel) => x.GetRequiredService<HomePageViewModel>(),
+            _ when type == typeof(ProcessPageViewModel) => x.GetRequiredService<ProcessPageViewModel>(),
+            _ when type == typeof(ActionsPageViewModel) => x.GetRequiredService<ActionsPageViewModel>(),
+            _ when type == typeof(MacrosPageViewModel)  => x.GetRequiredService<MacrosPageViewModel>(),
+            _ when type == typeof(ReporterPageViewModel)  => x.GetRequiredService<ReporterPageViewModel>(),
+            _ when type == typeof(HistoryPageViewModel)  => x.GetRequiredService<HistoryPageViewModel>(),
+            _ when type == typeof(SettingsPageViewModel)  => x.GetRequiredService<SettingsPageViewModel>(),
             _ => throw new InvalidOperationException(),
         });
         

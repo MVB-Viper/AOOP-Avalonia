@@ -3,7 +3,7 @@
                     x:ClassModifier="internal">
   <Design.PreviewWith>
     <Border Padding="20" Background="{DynamicResource PrimaryBackground}">
-      <Border Background="{DynamicResource PrimaryBackgroundGradient}" BorderBrush="{DynamicResource PrimaryText}" BorderThickness="3" Margin="0,-1,0,-1" Padding="{DynamicResource ComboBoxDropdownBorderPadding}" CornerRadius="{DynamicResource OverlayCornerRadius}">
+      <Border Background="{DynamicResource PrimaryBackgroundGradient}" BorderBrush="{DynamicResource PrimaryForeground}" BorderThickness="3" Margin="0,-1,0,-1" Padding="{DynamicResource ComboBoxDropdownBorderPadding}" CornerRadius="{DynamicResource OverlayCornerRadius}">
         <StackPanel HorizontalAlignment="Stretch">
           <ComboBoxItem>Item 1</ComboBoxItem>
           <ComboBoxItem>Item 2 long</ComboBoxItem>
@@ -37,7 +37,8 @@
     </Setter>
 
     <Style Selector="^">
-      <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+      <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
+      <Setter Property="FontWeight" Value="SemiBold"></Setter>
     </Style>
     
     <!--  PointerOver state  -->
@@ -46,9 +47,9 @@
       <Setter Property="Foreground" Value="{DynamicResource PrimaryHoverText}" />
     </Style>
 
-    <!--  PointerOver state  -->
+    <!--  Pressed state  -->
     <Style Selector="^:pressed">
-      <Setter Property="Background" Value="{DynamicResource PrimaryCurrentBackground}" />
+      <Setter Property="Background" Value="{DynamicResource ActiveGradient}" />
     </Style>
 
     
@@ -62,7 +63,8 @@
     <!--  Selected state  -->
     <Style Selector="^:selected">
       
-        <Setter Property="Background" Value="{DynamicResource PrimaryCurrentBackground}" />
+        <Setter Property="Background" Value="{DynamicResource ActiveGradient}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"/>
     
       <!--  Selected Disabled state  -->
       <Style Selector="^:disabled">

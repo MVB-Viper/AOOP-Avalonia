@@ -2,10 +2,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="450"
              xmlns:vm="clr-namespace:BatchProcess3.ViewModels"
              x:DataType="vm:ActionsPageViewModel"
-             x:Class="BatchProcess3.Views.ActionsPageView">
+             x:Class="BatchProcess3.Views.ActionsPageView"
+             Background="{DynamicResource PrimaryBackground}"
+             Foreground="{DynamicResource PrimaryForeground}"
+             xmlns:local="clr-namespace:BatchProcess3.Views">
     <Design.DataContext><vm:ActionsPageViewModel/></Design.DataContext>
-    <Label Content="{Binding Test}"></Label>
+    
+    <Grid RowDefinitions="Auto, *">
+        <!-- Header-->
+        <Grid>
+            <Image Source="{SvgImage /Assets/Images/background-actions.svg}" Stretch="UniformToFill"></Image>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Classes="h1" HorizontalAlignment="Center" Content="Actions"/>
+                <Label Classes="sub2" HorizontalAlignment="Center" Content="Create and manage all actions that can be used in a process"/>
+            </StackPanel>
+        </Grid>
+        <Border Grid.Row="1" Padding="25">
+        <TabControl Name="ActionsTabControl" SelectionChanged="ActionsTab_OnSelectionChanged" Padding="0 15 0 0 ">
+            <TabItem Header="Print">
+                <local:ActionsPrintView></local:ActionsPrintView>
+            </TabItem>
+            <TabItem Header="Custom Properties">
+                <TextBlock>Custom Properties</TextBlock>
+            </TabItem>
+            <TabItem Header="File Info">
+                <TextBlock>File Info</TextBlock>
+            </TabItem>
+            <TabItem Header="Save Model As">
+                <TextBlock>Save Model As</TextBlock>
+            </TabItem>
+            <TabItem Header="Save Drawing As">
+                <TextBlock>Save Drawing As</TextBlock>
+            </TabItem>
+            <TabItem Header="Import File">
+                <TextBlock>Import File</TextBlock>
+            </TabItem>
+            <TabItem Header="Drawing Template">
+                <TextBlock>YIPIIIEEE</TextBlock>
+            </TabItem>
+            <TabItem Header="Macros">
+                <TextBlock>WOOWW</TextBlock>
+            </TabItem>
+        </TabControl></Border>
+        
+    </Grid>
 </UserControl>

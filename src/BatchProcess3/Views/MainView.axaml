@@ -9,6 +9,7 @@
         xmlns:vm="clr-namespace:BatchProcess3.ViewModels"
         xmlns:view="clr-namespace:BatchProcess3.Views"
         x:DataType="vm:MainViewModel"
+        WindowStartupLocation="CenterScreen"
         Title="BatchProcess3">
     
         <Design.DataContext><vm:MainViewModel></vm:MainViewModel></Design.DataContext>
@@ -23,31 +24,31 @@
                     <Image PointerPressed="InputElement_OnPointerPressed" IsVisible="{Binding SideMenuExpanded}" Source="{SvgImage /Assets/Images/_logo.svg}" Width="220"></Image>
                     <Image PointerPressed="InputElement_OnPointerPressed" IsVisible="{Binding !SideMenuExpanded}" Source="{SvgImage /Assets/Images/icon.svg}" Width="22"></Image>
                     
-                    <IconButton Classes="subtle" Classes.active="{Binding HomePageIsActive}" Command="{Binding GoToHomeCommand}" IconText="&#xe2c2;">
+                    <IconButton Classes="subtle stretch" Classes.active="{Binding HomePageIsActive}" Command="{Binding GoToHomeCommand}" IconText="&#xe2c2;">
                         <Label Content="Home" IsVisible="{Binding SideMenuExpanded}"></Label>
                     </IconButton>
                     
-                    <IconButton Classes="subtle" Classes.active="{Binding ProcessPageIsActive}" Command="{Binding GoToProcessCommand}" IconText="&#xe346;">
+                    <IconButton Classes="subtle stretch" Classes.active="{Binding ProcessPageIsActive}" Command="{Binding GoToProcessCommand}" IconText="&#xe346;">
                         <Label Content="Process" IsVisible="{Binding SideMenuExpanded}"></Label>
                     </IconButton>
                     
-                    <IconButton Classes="subtle" Classes.active="{Binding ActionsPageIsActive}" Command="{Binding GoToActionsCommand}" IconText="&#xe7f2;">
+                    <IconButton Classes="subtle stretch" Classes.active="{Binding ActionsPageIsActive}" Command="{Binding GoToActionsCommand}" IconText="&#xe7f2;">
                         <Label Content="Actions" IsVisible="{Binding SideMenuExpanded}"></Label>
                     </IconButton>
                     
-                    <IconButton Classes="subtle" Classes.active="{Binding MacrosPageIsActive}" Command="{Binding GoToMacrosCommand}" IconText="&#xe3ee;">
+                    <IconButton Classes="subtle stretch" Classes.active="{Binding MacrosPageIsActive}" Command="{Binding GoToMacrosCommand}" IconText="&#xe3ee;">
                         <Label Content="Macros" IsVisible="{Binding SideMenuExpanded}"></Label>
                     </IconButton>
                     
-                    <IconButton Classes="subtle" Classes.active="{Binding ReporterPageIsActive}" Command="{Binding GoToReporterCommand}" IconText="&#xeb7a;">
+                    <IconButton Classes="subtle stretch" Classes.active="{Binding ReporterPageIsActive}" Command="{Binding GoToReporterCommand}" IconText="&#xeb7a;">
                         <Label Content="Reporter" IsVisible="{Binding SideMenuExpanded}"></Label>
                     </IconButton>
                     
-                    <IconButton Classes="subtle" Classes.active="{Binding HistoryPageIsActive}" Command="{Binding GoToHistoryCommand}" IconText="&#xe03a;">
+                    <IconButton Classes="subtle stretch" Classes.active="{Binding HistoryPageIsActive}" Command="{Binding GoToHistoryCommand}" IconText="&#xe03a;">
                         <Label Content="History" IsVisible="{Binding SideMenuExpanded}"></Label>
                     </IconButton>
                 </StackPanel>
-                <Button Grid.Row="1" Classes="transparent" Content="&#xe272;" Classes.active="{Binding SettingsPageIsActive}" Command="{Binding GoToSettingsCommand}"/>
+                <Button Grid.Row="1" Classes="transparent icon-only" Content="&#xe272;" Classes.active="{Binding SettingsPageIsActive}" Command="{Binding GoToSettingsCommand}"/>
 
             </Grid>
         </Border> <!-- Usually used to make padding, as stack panels don't have that-->

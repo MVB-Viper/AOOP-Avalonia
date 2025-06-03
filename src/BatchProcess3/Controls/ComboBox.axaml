@@ -113,7 +113,7 @@
                    InheritsTransform="True">
               <Border x:Name="PopupBorder"
                       Background="{DynamicResource PrimaryBackgroundGradient}"
-                      BorderBrush="{DynamicResource PrimaryText}"
+                      BorderBrush="{DynamicResource PrimaryForeground}"
                       BorderThickness="3"
                       Padding="{DynamicResource ComboBoxDropdownBorderPadding}"
                       HorizontalAlignment="Stretch"
@@ -135,18 +135,25 @@
     
     <Style Selector="^">
       <Setter Property="Margin" Value="0"/>
-
-      <Setter Property="BorderBrush" Value="{DynamicResource PrimaryButtonGradient}"/>
+      <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHoverBackground}"/>
       <Setter Property="BorderThickness" Value="3"></Setter>
-      <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
-      <Setter Property="PlaceholderForeground" Value="{DynamicResource PrimaryText}"></Setter>
+      <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
+      <Setter Property="PlaceholderForeground" Value="{DynamicResource PrimaryForeground}"></Setter>
       <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
+      
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Background" Duration="0:0:0.1"/>
+          <BrushTransition Property="BorderBrush" Duration="0:0:0.1"/>
+        </Transitions>
+      </Setter>
+      
     </Style>
     
     <!--  PointerOver State  -->
     <Style Selector="^:pointerover">
+      <Setter Property="BorderBrush" Value="{DynamicResource HoverGradient}" />
       <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}" />
-      <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHoverButtonGradient}" />
     </Style>
 
     <!--  Pressed State  -->
@@ -161,7 +168,7 @@
     
     <!--  Focused State  -->
     <Style Selector="^:focus">
-        <Setter Property="BorderBrush" Value="{DynamicResource AlertButtonGradient}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource HoverGradient}" />
     </Style>
 
     <!--  Disabled State  -->
