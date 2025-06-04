@@ -1,0 +1,81 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             x:Class="BatchProcess3.Views.ConfirmDialogView"
+             MinWidth="300"
+             xmlns:vm="clr-namespace:BatchProcess3.ViewModels"
+             Foreground="{DynamicResource PrimaryForeground}"
+             Background="Transparent"
+             x:DataType="vm:ConfirmDialogViewModel">
+    
+    <Design.DataContext><vm:ConfirmDialogViewModel></vm:ConfirmDialogViewModel></Design.DataContext>
+    
+    <!-- Main Dialog Window -->
+    <Border Background="{DynamicResource PrimaryBackground}" CornerRadius="20" ClipToBounds="True"
+            Margin="10"
+            BorderBrush="{DynamicResource DefaultGradient}"
+            BorderThickness="2">
+        
+        <Border.Effect>
+            <DropShadowEffect Color="{DynamicResource PrimaryBackDdrop}"></DropShadowEffect>
+        </Border.Effect>
+        <StackPanel>
+            
+            <!-- Title -->
+            <Border Background="{DynamicResource PrimaryBackgroundGradient}" CornerRadius="20 20 0 0">
+                <TextBlock Text= "{Binding Title}"
+                           Padding="10"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"/>
+            </Border>
+            
+            <!-- Description -->
+            <Border Padding="20">
+                <StackPanel Spacing="20">
+                    
+                    <!-- Description -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Classes="icon" Content="{Binding IconText}"></Label>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Message}"></TextBlock>
+                </StackPanel>
+                
+                    <!-- Alert Message -->
+                    <TextBlock Text="{Binding StatusText}"
+                               TextAlignment="Right"
+                               TextWrapping="Wrap"
+                               IsVisible="{Binding ShowingStatus}"
+                               Foreground="{DynamicResource AlertGradient}"/>
+                    
+                    
+                    
+                <!-- Button -->
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" IsVisible="{Binding !IsBusy}">
+                    <Button Content="{Binding CancelText}"
+                            Command="{Binding CancelCommand}"
+                            Classes="warning"
+                            MinWidth="70"
+                            HorizontalContentAlignment="Center"
+                            />
+                    <Button Content="{Binding ConfirmText}"
+                            Command="{Binding ConfirmCommand}"
+                            Classes="success"
+                            MinWidth="70"
+                            HorizontalContentAlignment="Center"/>
+                </StackPanel>
+                    <!-- Alert Message -->
+                    <TextBlock Text="{Binding ProgressText}"
+                               IsVisible="{Binding IsBusy}"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               />
+                </StackPanel>
+            </Border>
+            
+            
+        </StackPanel>
+    </Border>
+    
+</UserControl>

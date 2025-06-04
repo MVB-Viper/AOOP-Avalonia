@@ -5,14 +5,17 @@ using BatchProcess3.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Linq;
+using System.Threading.Tasks;
+using BatchProcess3.Services;
 using BatchProcess3.Views;
 
 namespace BatchProcess3.ViewModels;
 
-public partial class ActionsPageViewModel() : PageViewModel(ApplicationPageNames.Actions)
+public partial class ActionsPageViewModel(MainViewModel mainViewModel, DialogService dialogService) : PageViewModel(ApplicationPageNames.Actions)
 {
     private PrintProfileViewModel? _defaultPrinterProfile = new PrintProfileViewModel()
     {
+        Id = "0",
         Name = "(Default)",
         Description = "Print with default settings",
         Copies = 1,
@@ -29,8 +32,11 @@ public partial class ActionsPageViewModel() : PageViewModel(ApplicationPageNames
     
     
     [ObservableProperty]
-    private ActionsPrintViewModel? _selectedPrintListItem;
+    [NotifyPropertyChangedFor(nameof(SelectedPrintListItem))]
+    private string _selectedPrintListItemId = "";
 
+    public ActionsPrintViewModel? SelectedPrintListItem =>
+        PrintList.FirstOrDefault(f => f.Id == SelectedPrintListItemId);
     
     [RelayCommand]
     public void RefreshActionsPage(ActionsPageName actionsPageName)
@@ -47,17 +53,17 @@ public partial class ActionsPageViewModel() : PageViewModel(ApplicationPageNames
         // TODO: Fetch form a database/service Provider
         PrintList =
         [
-            new ActionsPrintViewModel {Id = "1", JobName = "Print Only Drawings", Description = "Print Only Drawings Files", PrintDrawingRange = "0, 5, 7-8", PrintDrawings = true,  PrinterProfile = _defaultPrinterProfile},
-            new ActionsPrintViewModel {Id = "2", JobName = "Print All Drawings Scale To Fit", Description = "Prints drawing scaled to fit the paper", PrintDrawings = true,  PrinterProfile = _defaultPrinterProfile},
-            new ActionsPrintViewModel {Id = "3", JobName = "Print 3D Models A3", Description = "Print models as 3D Visual", PrintModels = true, PrinterProfile = _defaultPrinterProfile},
+            new ActionsPrintViewModel {Id = "1", JobName = "Print Only Drawings", Description = "Print Only Drawings Files", PrintDrawingRange = "0, 5, 7-8", PrintDrawings = true,  PrinterProfileId = "1"},
+            new ActionsPrintViewModel {Id = "2", JobName = "Print All Drawings Scale To Fit", Description = "Prints drawing scaled to fit the paper", PrintDrawings = true,  PrinterProfileId = "2"},
+            new ActionsPrintViewModel {Id = "3", JobName = "Print 3D Models A3", Description = "Print models as 3D Visual", PrintModels = true, PrinterProfileId = "3"},
         ];
 
         PrinterProfiles =
         [
             _defaultPrinterProfile,
-            new PrintProfileViewModel {Name = "Print Landscape", Description = "Print all files in landscape mode", Copies = 3}, // TODO: Populate Printer Seetings
-            new PrintProfileViewModel {Name = "Print Portrait", Description = "Print all files in portrait mode", Copies = 1},
-            new PrintProfileViewModel {Name = "Print B&W A3", Description = "Print all A3 print B&W", Copies = 3},
+            new PrintProfileViewModel {Id = "1", Name = "Print Landscape", Description = "Print all files in landscape mode", Copies = 3}, // TODO: Populate Printer Seetings
+            new PrintProfileViewModel {Id = "2", Name = "Print Portrait", Description = "Print all files in portrait mode", Copies = 1},
+            new PrintProfileViewModel {Id = "3", Name = "Print B&W A3", Description = "Print all A3 print B&W", Copies = 3},
         ];
         
         // Update PrintLIstHast Items when collections changes
@@ -66,7 +72,7 @@ public partial class ActionsPageViewModel() : PageViewModel(ApplicationPageNames
         if (PrintList.Count > 0)
         {
             // Select First Item
-            PrintList.First().IsSelected = true;
+            SelectedPrintListItemId =  PrintList.First().Id;
             
             // Load last fetched items saved state
             foreach (var printItem in PrintList)
@@ -83,7 +89,7 @@ public partial class ActionsPageViewModel() : PageViewModel(ApplicationPageNames
     }
     
     [RelayCommand]
-    public void DeletePrintItem(string id)
+    public async Task DeletePrintItemAsync(string id)
     {
         // TODO: Pass this logic to a service that handles the database/storage/fetching
 
@@ -92,7 +98,7 @@ public partial class ActionsPageViewModel() : PageViewModel(ApplicationPageNames
         return;
 
 
-        DeletePrintItemFromUI(id);
+        await DeletePrintItemFromUIAsync(id);
         
         
         
@@ -109,36 +115,73 @@ public partial class ActionsPageViewModel() : PageViewModel(ApplicationPageNames
         {
             Id = Guid.NewGuid().ToString("N"),
             IsNewItem = true,
-            IsSelected = true,
-            JobName = "New Print Item"
+            JobName = "New Print Item",
+            PrinterProfileId = "0"
         };
 
-        // Remove Item
+        
+        // Add Item to print list
         PrintList.Add(newItem);
+        
+        // Select Item
+        SelectedPrintListItemId = newItem.Id;
     }
 
     [RelayCommand]
-    public void CancelPrintItem()
+    public async Task CancelPrintItemAsync()
     {
         // Ignore if nothing is selected
         if (SelectedPrintListItem == null)
             return;
         
         if (SelectedPrintListItem.IsNewItem)
-        DeletePrintItemFromUI(SelectedPrintListItem.Id);
+            await DeletePrintItemFromUIAsync(SelectedPrintListItem.Id, warn: false);
+        else
+        {
+            SelectedPrintListItem.RestoreSavedState();
+        }
+            
         
     }
 
-    public void DeletePrintItemFromUI(string id)
+    private async Task DeletePrintItemFromUIAsync(string id, bool warn = true)
     {
+
         int index = PrintList.IndexOf(PrintList.First(x => x.Id == id));
         
+        if (index == -1)
+            return;
         
+        if (warn) {
+            var confirmViewModel = new ConfirmDialogViewModel
+            {
+                Title = $"Delete {PrintList[index].JobName}?",
+                Message = $"Are you sure you want to delete this print?",
+                /*OnConfirm = async (vm) =>
+                {
+                    await Task.Delay(2000);
+                    
+                    vm.ProgressText = "Deleting...";
+                    
+                    await Task.Delay(2000);
+                    
+                    
+                    return true;
+
+                }*/
+            };
+            
+            await dialogService.ShowDialog(mainViewModel, confirmViewModel);
+
+            // Return if cancel is pressed
+            if (!confirmViewModel.Confirmed)
+                return;
+        }
         PrintList.RemoveAt(index);
         
         if (index > 1) index--;
 
         if (PrintList.Count > 0)
-            PrintList[index].IsSelected = true;
+            SelectedPrintListItemId = PrintList[index].Id;
     }
 }

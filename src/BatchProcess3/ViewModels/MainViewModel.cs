@@ -2,13 +2,14 @@
 using Avalonia.Svg.Skia;
 using BatchProcess3.Data;
 using BatchProcess3.Factories;
+using BatchProcess3.Interface;
 using BatchProcess3.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace BatchProcess3.ViewModels;
 
-public partial class MainViewModel : ViewModelBase
+public partial class MainViewModel : ViewModelBase, IDialogProvider
 {
     private PageFactory _pageFactory;
     
@@ -25,6 +26,9 @@ public partial class MainViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(HistoryPageIsActive))]
     [NotifyPropertyChangedFor(nameof(SettingsPageIsActive))]
     private PageViewModel _currentPage;
+    
+    [ObservableProperty]
+    private DialogViewModel _dialog;
     
     // ButtonClasses
     public bool HomePageIsActive => CurrentPage.PageName == ApplicationPageNames.Home;
@@ -83,5 +87,7 @@ public partial class MainViewModel : ViewModelBase
 
     [RelayCommand]
     private void GoToSettings() => CurrentPage = _pageFactory.GetPageViewModel<SettingsPageViewModel>();
+
+    
 }
 

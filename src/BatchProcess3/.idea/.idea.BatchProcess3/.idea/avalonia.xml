@@ -27,6 +27,7 @@
         <entry key="Views/ActionPageView.axaml" value="BatchProcess3.csproj" />
         <entry key="Views/ActionsPageView.axaml" value="BatchProcess3.csproj" />
         <entry key="Views/ActionsPrintView.axaml" value="BatchProcess3.csproj" />
+        <entry key="Views/ConfirmDialogView.axaml" value="BatchProcess3.csproj" />
         <entry key="Views/HistoryPageView.axaml" value="BatchProcess3.csproj" />
         <entry key="Views/HomePageView.axaml" value="BatchProcess3.csproj" />
         <entry key="Views/MacrosPageView.axaml" value="BatchProcess3.csproj" />

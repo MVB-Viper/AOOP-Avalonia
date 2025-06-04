@@ -5,6 +5,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Metadata;
 using BatchProcess3.Data;
 using BatchProcess3.Factories;
+using BatchProcess3.Services;
 using BatchProcess3.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -44,6 +45,7 @@ public partial class App : Application
         });
         
         collection.AddSingleton<PageFactory>();
+        collection.AddSingleton<DialogService>();
         
         var serviceProvider = collection.BuildServiceProvider();
         

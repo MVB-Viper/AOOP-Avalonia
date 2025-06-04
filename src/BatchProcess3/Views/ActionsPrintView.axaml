@@ -18,7 +18,10 @@
             <TextBlock Grid.Row="2" TextWrapping="Wrap"
                        Text="Print actions can be used to print drawings or models to specific printers with specific settings."/>
             <Button Grid.Row="4" Command="{Binding AddNewPrintItem}" Content="New Print Action" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Classes="small outline"></Button>
-            <ListBox Grid.Row="6" SelectionChanged="SelectingItemsControl_OnSelectionChanged" ItemsSource="{Binding PrintList}" SelectedItem="{Binding SelectedPrintListItem}">
+            <ListBox Grid.Row="6" SelectionChanged="SelectingItemsControl_OnSelectionChanged"
+                     ItemsSource="{Binding PrintList}"
+                     SelectedValueBinding="{Binding Id}"
+                     SelectedValue = "{Binding SelectedPrintListItemId}">
                 <ListBox.ItemTemplate>
                     <DataTemplate x:DataType="vm:ActionsPrintViewModel">
                         <Grid ColumnDefinitions="*, Auto">
@@ -29,21 +32,15 @@
                                    VerticalAlignment="Center"/>
                             <Button Grid.Column="1"
                                     Margin="0 -4 -4 -12"
-                                    Command="{Binding $parent[ListBox].((vm:ActionsPageViewModel)DataContext).DeletePrintItem}"
+                                    Command="{Binding $parent[ListBox].((vm:ActionsPageViewModel)DataContext).DeletePrintItemAsync}"
                                     CommandParameter="{Binding Id}"
                                     VerticalAlignment="Center"
                                     Classes="small icon-only transparent"
                                     Content="&#xe4a6;"
-                                    IsVisible="{Binding IsSelected}"></Button>
+                                    IsVisible="{Binding $parent[ListBoxItem].IsSelected}"></Button>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-                <ListBox.Styles>
-                    <Style Selector="ListBoxItem" x:DataType="vm:ActionsPrintViewModel">
-                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                        <Setter Property="IsSelected" Value="{Binding IsSelected}"></Setter>
-                    </Style>
-                </ListBox.Styles>
             </ListBox>
         </Grid>
         
@@ -93,7 +90,9 @@
             
             <Label  Grid.Row="6" Classes="h2" Content="Printer Settings"/>
             <TextBlock  Grid.Row="8" Text="Select the profiles to use for paper sizes" Margin="0 -10 0 0"/>
-            <ListBox Grid.Row="10" Grid.ColumnSpan="2" ItemsSource="{Binding PrinterProfiles}" SelectedItem="{Binding SelectedPrintListItem.PrinterProfile}">
+            <ListBox Grid.Row="10" Grid.ColumnSpan="2" ItemsSource="{Binding PrinterProfiles}"
+                     SelectedValueBinding="{Binding Id}"
+                     SelectedValue="{Binding SelectedPrintListItem.PrinterProfileId}">
                 <ListBox.ItemTemplate>
                     <DataTemplate x:DataType="vm:PrintProfileViewModel">
                         <StackPanel>
@@ -120,7 +119,7 @@
                     <Label Content="{Binding SelectedPrintListItem.DrawingExclusionListTitle}"></Label>
                     
                 </StackPanel>
-                <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding SelectedPrintListItem.DrawingExclusionList}" TextWrapping="Wrap" Height="70"/>
+                <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding SelectedPrintListItem.DrawingExclusionList}" TextWrapping="Wrap" Height="70" AcceptsReturn="True"/>
             </Grid>
             <StackPanel Opacity="{Binding SelectedPrintListItem.HasChanged, FallbackValue=0}" Grid.Row="6" Orientation="Horizontal" Spacing="10" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                 <StackPanel.Styles>

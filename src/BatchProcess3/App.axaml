@@ -47,6 +47,7 @@
                  
                  <SolidColorBrush x:Key="PrimaryHoverText">White</SolidColorBrush>
                  <SolidColorBrush x:Key="PrimaryHoverBackground">#333B5A</SolidColorBrush>
+                 <Color x:Key="PrimaryBackDdrop">#151E3E</Color>
                  
                  
                  
