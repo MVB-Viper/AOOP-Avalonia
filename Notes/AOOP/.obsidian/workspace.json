@@ -69,32 +69,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Design Patterns/Design Patterns.md",
+                "file": "Link Document.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Design Patterns"
+              "title": "Link Document"
             }
           }
         ],
         "currentTab": 4
-      },
-      {
-        "id": "3523e52fe3b2df43",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "ccaaf61406b41000",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
-            }
-          }
-        ]
       }
     ],
     "direction": "vertical"
@@ -243,15 +227,18 @@
   },
   "active": "6b56897e287452dd",
   "lastOpenFiles": [
+    "Object Oriented Programming Hub.md",
+    "SOLID.md",
+    "Design Patterns/Design Patterns.md",
+    "Design Patterns/Observer.md",
+    "Link Document.md",
     "Design Patterns/Command.md",
     "Design Patterns/Adapter.md",
     "Design Patterns/Strategy.md",
-    "Design Patterns/Design Patterns.md",
     "Design Patterns/Singleton.md",
     "Design Patterns/Factory Method.md",
     "Design Patterns/Facade.md",
     "Images/StructureFactoryMethod.png",
-    "Object Oriented Programming Hub.md",
     "Interfaces & Relations.md",
     "Basic Terminology of OOP.md",
     "Images/ProsConsSingleton.png",

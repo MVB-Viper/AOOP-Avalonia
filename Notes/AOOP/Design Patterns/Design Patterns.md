@@ -24,3 +24,4 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 Examples of this type of pattern:
 - [[Command]]
 - [[Strategy]]
+- [[Observer]]
