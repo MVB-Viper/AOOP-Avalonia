@@ -1,0 +1,170 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+  <Design.PreviewWith>
+    <Border Padding="20">
+      <Grid Background="{DynamicResource PrimaryBackground}" ColumnDefinitions="*,*" Width="400">
+      <StackPanel Grid.Column="0" Spacing="20">
+        <ToggleButton></ToggleButton>
+        <ToggleButton IsChecked="True"></ToggleButton>
+        <ToggleButton>Unchecked</ToggleButton>
+        <ToggleButton IsChecked="True">Checked</ToggleButton>
+        <ToggleButton IsThreeState="True" IsChecked="{x:Null}">Indeterminate</ToggleButton>
+        <ToggleButton Width="120">Checkbox should wrap its text</ToggleButton>
+      </StackPanel>
+        <StackPanel Grid.Column="1" Spacing="20">
+          <ToggleButton IsEnabled="False"></ToggleButton>
+          <ToggleButton IsEnabled="False" IsChecked="True"></ToggleButton>
+          <ToggleButton IsEnabled="False">Unchecked</ToggleButton>
+          <ToggleButton IsEnabled="False" IsChecked="True">Checked</ToggleButton>
+          <ToggleButton IsEnabled="False" IsThreeState="True" IsChecked="{x:Null}">Indeterminate</ToggleButton>
+          <ToggleButton IsEnabled="False" Width="120">Checkbox should wrap its text</ToggleButton>
+        </StackPanel>
+      </Grid>
+    </Border>
+  </Design.PreviewWith>
+  
+  <ControlTheme x:Key="{x:Type ToggleButton}" TargetType="ToggleButton">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForeground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonBorderBrush}" />
+    <Setter Property="BorderThickness" Value="{DynamicResource ToggleButtonBorderThemeThickness}" />
+    <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+    <Setter Property="Padding" Value="{DynamicResource ButtonPadding}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="RenderTransform" Value="none" />
+    <Setter Property="Transitions">
+      <Transitions>
+        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:.075" />
+      </Transitions>
+    </Setter>
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid ColumnDefinitions="Auto, 10,  *">
+        <Border x:Name="PART_ToggleSlider"
+          Grid.Column="0" 
+          Padding="3" 
+          CornerRadius="15" 
+          VerticalAlignment="Top"
+          BorderThickness="2"
+          BorderBrush="{DynamicResource ActiveGradient}">
+          <Border.Transitions>
+            <Transitions>
+              <BrushTransition Property="Background" Duration="0:0:.075" />
+              <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.075"></TransformOperationsTransition>
+            </Transitions>
+          </Border.Transitions>
+          
+          <Border x:Name="PART_ToggleDot" Width="15" Height="15" Background="{DynamicResource PrimaryForeground}" CornerRadius="7">
+            <Border.Transitions>
+              <Transitions>
+                <ThicknessTransition Property="Margin" Duration="0:0:.125" />
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.075"></TransformOperationsTransition>
+              </Transitions>
+            </Border.Transitions>
+          </Border>
+        </Border>
+        <TextBlock Grid.Column="2"
+                          Text="{TemplateBinding Content}"
+                          FontWeight="Normal"
+                          TextWrapping="Wrap"/>
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+    
+    
+    <!-- Disabled Text -->
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{DynamicResource PrimaryHoverBackground}"></Setter>
+    </Style>
+    
+    <!-- UnChecked Style -->
+    <Style Selector="^">
+      <Setter Property="Background" Value="Transparent"/>
+      <Style Selector="^ /template/ Border#PART_ToggleDot">
+        <Setter Property="Margin" Value="0 0 20 0"></Setter>
+      </Style>
+    </Style>
+    
+    
+    <!-- IsChecked -->
+    <Style Selector="^:checked">
+      <Style Selector="^ /template/ Border#PART_ToggleSlider">
+        <Setter Property="Background" Value="{DynamicResource ActiveGradient}"/>
+      </Style>
+      
+      <Style Selector="^ /template/ Border#PART_ToggleDot">
+        <Setter Property="Margin" Value="20 0 0 0"></Setter>
+      </Style>
+    </Style>
+    
+    <!-- Pointer over -->
+    <Style Selector="^:pointerover" >
+      <Setter Property="Background" Value="{DynamicResource ActiveGradient}"></Setter>
+      
+      <Style Selector="^ /template/ Border#PART_ToggleSlider">
+        <Setter Property="BorderBrush" Value="{DynamicResource HoverGradient}"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+      </Style>
+      
+      <Style Selector="^ /template/ Border#PART_ContentPresenter">
+        <Setter Property="Background" Value="Transparent"></Setter>
+      </Style>
+      
+      <Style Selector="^:checked /template/ Border#PART_ToggleSlider">
+        <Setter Property="BorderBrush" Value="{DynamicResource HoverGradient}"></Setter>
+        <Setter Property="Background" Value="{DynamicResource HoverGradient}"></Setter>
+      </Style>
+    </Style>
+    
+    <!-- Pressed Style -->
+    <Style Selector="^:pressed">
+      
+      <Style Selector="^ /template/ Border#PART_ToggleSlider">
+        <Setter Property="RenderTransform" Value="scale(0.97)"/>
+      </Style>
+      
+      <Style Selector="^ /template/ Border#PART_ToggleDot">
+        <Setter Property="RenderTransform" Value="scale(0.97)"/>
+      </Style>
+    </Style>
+    
+    
+    <!-- Disabled UnChecked -->
+    <Style Selector="^:disabled">
+      <Style Selector="^ /template/ Border#PART_ToggleSlider">
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHoverBackground}"></Setter>
+      </Style>
+      <Style Selector="^ /template/ Border#PART_ToggleDot">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}"></Setter>
+      </Style>
+    </Style>
+    
+    <!-- Disabled Checked -->
+    <Style Selector="^:disabled:checked">
+      <Style Selector="^ /template/ Border#PART_ToggleSlider">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}"></Setter>
+      </Style>
+      <Style Selector="^ /template/ Border#PART_ToggleDot">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
+      </Style>
+    </Style>
+    
+    
+    <Style Selector="^:indeterminate">
+      <Style Selector="^ /template/ Border#PART_ToggleSlider">
+        <Setter Property="Background" Value="{DynamicResource ActiveGradient}"/>
+        
+        <Setter Property="Opacity" Value="0.7"></Setter>
+      </Style>
+      
+      <Style Selector="^ /template/ Border#PART_ToggleDot">
+        <Setter Property="Margin" Value="10 0 10 0"></Setter>
+        <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"/>
+      </Style>
+    </Style>
+    
+  </ControlTheme>
+</ResourceDictionary>

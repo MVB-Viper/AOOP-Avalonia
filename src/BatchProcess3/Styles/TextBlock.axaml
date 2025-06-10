@@ -17,11 +17,11 @@
     <!-- Add Styles Here -->
     
     <Style Selector="TextBlock.normal">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
     </Style>
     
     <Style Selector="TextBlock.sub1">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
         <Setter Property="FontSize" Value="13"></Setter>
         <Setter Property="FontWeight" Value="Bold"></Setter>
             
@@ -30,14 +30,14 @@
     </Style>
     
     <Style Selector="TextBlock.success">
-        <Setter Property="Foreground" Value="{DynamicResource SuccessButtonGradient}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SuccessGradient}"/>
     </Style>
     
     <Style Selector="TextBlock.alert">
-        <Setter Property="Foreground" Value="{DynamicResource AlertButtonGradient}"/>
+        <Setter Property="Foreground" Value="{DynamicResource AlertGradient}"/>
     </Style>
     
     <Style Selector="TextBlock.warning">
-        <Setter Property="Foreground" Value="{DynamicResource WarningButtonGradient}"/>
+        <Setter Property="Foreground" Value="{DynamicResource WarningGradient}"/>
     </Style>
 </Styles>

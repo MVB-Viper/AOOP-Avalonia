@@ -17,13 +17,8 @@
     </Design.PreviewWith>
 
     <!-- Add Styles Here -->
-    <Style Selector="Label">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
-    </Style>
-    
-    
     <Style Selector="Label.h1">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
         <Setter Property="FontSize" Value="45"></Setter>
         <Setter Property="FontWeight" Value="Black"></Setter>
         <Setter Property="Padding" Value="0"></Setter>
@@ -31,14 +26,14 @@
     </Style>
     
     <Style  Selector="Label.h2">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
         <Setter Property="Padding" Value="0 0 8 0"></Setter>
         <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
     </Style>
 
     <Style Selector="Label.sub1">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
         <Setter Property="FontSize" Value="13"></Setter>
         <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="Padding" Value="0"></Setter>
@@ -46,22 +41,22 @@
     </Style>
         
     <Style Selector="Label.sub2">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
         <Setter Property="FontSize" Value="11"></Setter>
         <Setter Property="Padding" Value="0"></Setter>
         <Setter Property="Margin" Value="0"/>
     </Style>
         
     <Style Selector="Label.alert">
-        <Setter Property="Foreground" Value="{DynamicResource AlertButtonGradient}"/>
+        <Setter Property="Foreground" Value="{DynamicResource AlertGradient}"/>
     </Style>
         
     <Style Selector="Label.success">
-        <Setter Property="Foreground" Value="{DynamicResource SuccessButtonGradient}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SuccessGradient}"/>
     </Style>
     
     <Style Selector="Label.warning">
-        <Setter Property="Foreground" Value="{DynamicResource WarningButtonGradient}"/>
+        <Setter Property="Foreground" Value="{DynamicResource WarningGradient}"/>
     </Style>
     
     

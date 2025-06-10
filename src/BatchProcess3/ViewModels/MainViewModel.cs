@@ -1,13 +1,15 @@
-﻿using Avalonia.Svg.Skia;
+﻿using System;
+using Avalonia.Svg.Skia;
 using BatchProcess3.Data;
 using BatchProcess3.Factories;
+using BatchProcess3.Interface;
 using BatchProcess3.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace BatchProcess3.ViewModels;
 
-public partial class MainViewModel : ViewModelBase
+public partial class MainViewModel : ViewModelBase, IDialogProvider
 {
     private PageFactory _pageFactory;
     
@@ -24,6 +26,9 @@ public partial class MainViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(HistoryPageIsActive))]
     [NotifyPropertyChangedFor(nameof(SettingsPageIsActive))]
     private PageViewModel _currentPage;
+    
+    [ObservableProperty]
+    private DialogViewModel _dialog;
     
     // ButtonClasses
     public bool HomePageIsActive => CurrentPage.PageName == ApplicationPageNames.Home;
@@ -50,7 +55,8 @@ public partial class MainViewModel : ViewModelBase
 
     public MainViewModel(PageFactory pageFactory)
     {
-        _pageFactory = pageFactory;
+        _pageFactory = pageFactory ?? throw new ArgumentNullException(nameof(pageFactory));
+        CurrentPage = _pageFactory.GetPageViewModel<SettingsPageViewModel>();
 
         GoToHome();
     }
@@ -62,24 +68,26 @@ public partial class MainViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private void GoToHome() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Home);
+    private void GoToHome() => CurrentPage = _pageFactory.GetPageViewModel<HomePageViewModel>();
 
     [RelayCommand]
-    private void GoToProcess() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Process);
+    private void GoToProcess() => CurrentPage = _pageFactory.GetPageViewModel<ProcessPageViewModel>();
     
     [RelayCommand]
-    private void GoToActions() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Actions);
+    private void GoToActions() => CurrentPage = _pageFactory.GetPageViewModel<ActionsPageViewModel>();
     
     [RelayCommand]
-    private void GoToMacros() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Macros);
+    private void GoToMacros() => CurrentPage = _pageFactory.GetPageViewModel<MacrosPageViewModel>();
     
     [RelayCommand]
-    private void GoToReporter() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Reporter);
+    private void GoToReporter() => CurrentPage = _pageFactory.GetPageViewModel<ReporterPageViewModel>();
     
     [RelayCommand]
-    private void GoToHistory() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.History);
+    private void GoToHistory() => CurrentPage = _pageFactory.GetPageViewModel<HistoryPageViewModel>();
 
     [RelayCommand]
-    private void GoToSettings() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Settings);
+    private void GoToSettings() => CurrentPage = _pageFactory.GetPageViewModel<SettingsPageViewModel>();
+
+    
 }
 

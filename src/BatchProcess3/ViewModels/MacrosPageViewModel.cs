@@ -2,12 +2,7 @@
 
 namespace BatchProcess3.ViewModels;
 
-public partial class MacrosPageViewModel : PageViewModel
+public partial class MacrosPageViewModel() : PageViewModel(ApplicationPageNames.Macros)
 {
     public string Test { get; set; } = "Macros";
-
-    public MacrosPageViewModel()
-    {
-        PageName = ApplicationPageNames.Macros;
-    }
 }

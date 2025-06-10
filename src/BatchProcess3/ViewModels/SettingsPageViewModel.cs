@@ -11,9 +11,8 @@ public partial class SettingsPageViewModel : PageViewModel
     
     public string Test { get; set; } = "Settings";
 
-    public SettingsPageViewModel()
+    public SettingsPageViewModel() : base(ApplicationPageNames.Settings)
     {
-        PageName = ApplicationPageNames.Settings;
         
         // TEMP: Remove
         LocationsPaths =
